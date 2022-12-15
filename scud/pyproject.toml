@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "scup"
-version = "0.2.0"
+version = "0.2.3"
 description = "Basic 3 show commands working"
 authors = ["ankit K <ankit48365@gmail.com>"]
 readme = "README.md"

@@ -58,7 +58,7 @@ pyzmq                24.0.1
 rapidfuzz            2.13.6
 requests             2.28.1
 requests-toolbelt    0.10.1
-scup                 0.2.0
+scup                 0.2.1
 setuptools           63.2.0
 shellingham          1.5.0
 six                  1.16.0

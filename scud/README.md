@@ -1,4 +1,8 @@
 
+version = "0.2.3" --> Package Name changed from MSS to SCUP as pypi showed conflict. (SCUP as in SQL Covertor Utility Program)
+version = "0.2.2" --> List command added and reponse to no query match added
+version = "0.2.0" --> 3 Show commands working
+version = "0.2.1" --> Patch - test scripts was commented out
 
 7.1. Version numbering
 Versioning is the process of adding unique identifiers to different versions of your package. The unique identifier you use may be name-based or number-based, but most Python packages use semantic versioning. In semantic versioning, a version number consists of three integers A.B.C, where A is the “major” version, B is the “minor” version, and C is the “patch” version. The first version of a software usually starts at 0.1.0 and increments from there. We call an increment a “bump”, and it consists of adding 1 to either the major, minor, or patch identifier as follows:
