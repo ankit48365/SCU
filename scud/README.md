@@ -9,7 +9,14 @@ with this idea i have created this utility to provide syntax to some imp queries
 
 run [print(scup.sqlserver('list'))] to see a complete list queries, this utility support.
 
+version = "0.4.2" --> Bug - List command but erroring - local variable 'ssquery' referenced before assignment
+
+version = "0.4.1" --> fixed a small bug, nevermind :)
+
+version = "0.4.0" --> Added option to call queries by numbers
+
 version = "0.3.0" --> Changed scup.py function ms2ssf() name to sqlserver(). added many other sqls.
+
 version = "0.2.3" --> Package Name changed from MSS to SCUP as pypi showed conflict. (SCUP as in SQL Covertor Utility Program)
 
 version = "0.2.2" --> List command added and reponse to no query match added
@@ -29,3 +36,4 @@ COMMANDS HELP  ()
         5. DESCRIBE TABLE  : will prompt for Database name
         6. SHOW INDEX FROM TABLE  : will prompt for Schema and Table name
         7. DATABASE STATUS  : will prompt for Database name 
+        8. SHOW VIEWS : will prompt for Schema name
