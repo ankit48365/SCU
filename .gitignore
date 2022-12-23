@@ -1,5 +1,6 @@
 # i added 
 tests/TEST_NOTEBOOK.ipynb
+tests/scup_demo.ipynb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
