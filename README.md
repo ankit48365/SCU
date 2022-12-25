@@ -1,5 +1,5 @@
 # SCUP
-https://pypip.in/version/scup/badge.svg
+[![Latest Version](https://pypip.in/version/scup/badge.svg)](https://pypi.python.org/pypi/scup/)
 
 SQL Convertor Utility Program
 
