@@ -1,7 +1,4 @@
 # SCUP
-[![Latest Version](https://pypip.in/version/scup/badge.svg)](https://pypi.python.org/pypi/scup/)
-
-https://img.shields.io/badge/PYPI-SCUP-brightgreen
 
 SQL Convertor Utility Program
 
