@@ -18,15 +18,17 @@ def sqlserver(msquery):
         print("Please notice the prompt looking for input")
         SchemaName = input("Provide Schema name : ")
         ssquery = ("SELECT table_schema, table_name, table_type FROM information_schema.tables where table_schema = '"+SchemaName+"';")
+
 # 3 
     elif msquery == 'SHOW TABLES FROM DATABASE_NAME':
         print("Please notice the prompt looking for input")
         dbname = input("Provide Database name : ")
-        ssquery = ("SELECT Table_Catalog, table_schema, table_name, table_type FROM information_schema.tables where Table_Catalog = '"+dbname+"';")
+        ssquery = ("DECLARE @DB_NAME VARCHAR (30);SET @DB_NAME = '"+dbname+"';WITH myquery_3 (Table_Catalog, Table_schema, Table_name, Table_type) AS (select 'Table_Catalog', 'Table_schema', 'Table_name', 'Table_type' from sys.indexes union SELECT Table_Catalog, Table_schema, Table_name, Table_type FROM information_schema.tables where Table_Catalog = @DB_NAME ) select * from myquery_3 ORDER BY 2 DESC")
     elif msquery == '3':
         print("Please notice the prompt looking for input")
         dbname = input("Provide Database name : ")
-        ssquery = ("SELECT Table_Catalog, table_schema, table_name, table_type FROM information_schema.tables where Table_Catalog = '"+dbname+"';")
+        ssquery = ("DECLARE @DB_NAME VARCHAR (30);SET @DB_NAME = '"+dbname+"';WITH myquery_3 (Table_Catalog, Table_schema, Table_name, Table_type) AS (select 'Table_Catalog', 'Table_schema', 'Table_name', 'Table_type' from sys.indexes union SELECT Table_Catalog, Table_schema, Table_name, Table_type FROM information_schema.tables where Table_Catalog = @DB_NAME ) select * from myquery_3 ORDER BY 2 DESC")
+
 # 4
     elif msquery == 'SHOW CHECK_CONSTRAINTS FROM TABLE':
         print("Please notice the prompt looking for input")
@@ -52,12 +54,14 @@ def sqlserver(msquery):
         print("Please notice the prompt looking for input")
         Schemaname3 = input("Provide Schema name : ")
         TblName3 = input("Provide Table name : ")
-        ssquery = ("EXEC sp_helpindex '"+Schemaname3+"."+TblName3+"'")
+        ssquery = ("DECLARE @SCHEMA VARCHAR (30); SET @SCHEMA = '"+Schemaname3+"' ;DECLARE @DB_NAME VARCHAR (30);SET @DB_NAME = '"+TblName3+"';DECLARE @OBJECTID VARCHAR (50);SET @OBJECTID = @SCHEMA+'.'+@DB_NAME;WITH myquery (Table_Name,Is_Unique, Index_Name, Column_Name,index_column_id, key_ordinal, is_included_column) AS(select 'Table_Name','Is_Unique','Index_Name','Column_Name','index_column_id','key_ordinal','is_included_column' from sys.indexes union SELECT OBJECT_NAME(a.object_id) as Table_Name, CONVERT(varchar(1), a.is_unique) AS Is_Unique,  a.name AS Index_Name, COL_NAME(b.object_id,b.column_id) AS Column_Name, CONVERT(varchar(1),b.index_column_id) AS index_column_id, CONVERT(varchar(1),b.key_ordinal) AS key_ordinal, CONVERT(varchar(1),b.is_included_column) AS is_included_column FROM sys.indexes AS a INNER JOIN  sys.index_columns AS b        ON a.object_id = b.object_id AND a.index_id = b.index_id WHERE a.is_hypothetical = 0 AND  a.object_id = OBJECT_ID(@OBJECTID) ) select * from myquery ORDER BY 2 DESC ")
+
     elif msquery == '6':
         print("Please notice the prompt looking for input")
         Schemaname3 = input("Provide Schema name : ")
         TblName3 = input("Provide Table name : ")
-        ssquery = ("EXEC sp_helpindex '"+Schemaname3+"."+TblName3+"'")
+        ssquery = ("DECLARE @SCHEMA VARCHAR (30); SET @SCHEMA = '"+Schemaname3+"' ;DECLARE @DB_NAME VARCHAR (30);SET @DB_NAME = '"+TblName3+"';DECLARE @OBJECTID VARCHAR (50);SET @OBJECTID = @SCHEMA+'.'+@DB_NAME;WITH myquery (Table_Name,Is_Unique, Index_Name, Column_Name,index_column_id, key_ordinal, is_included_column) AS(select 'Table_Name','Is_Unique','Index_Name','Column_Name','index_column_id','key_ordinal','is_included_column' from sys.indexes union SELECT OBJECT_NAME(a.object_id) as Table_Name, CONVERT(varchar(1), a.is_unique) AS Is_Unique,  a.name AS Index_Name, COL_NAME(b.object_id,b.column_id) AS Column_Name, CONVERT(varchar(1),b.index_column_id) AS index_column_id, CONVERT(varchar(1),b.key_ordinal) AS key_ordinal, CONVERT(varchar(1),b.is_included_column) AS is_included_column FROM sys.indexes AS a INNER JOIN  sys.index_columns AS b        ON a.object_id = b.object_id AND a.index_id = b.index_id WHERE a.is_hypothetical = 0 AND  a.object_id = OBJECT_ID(@OBJECTID) ) select * from myquery ORDER BY 2 DESC ")
+
 # 7
     elif msquery == 'DATABASE STATUS':
         print("Please notice the prompt looking for input")
