@@ -118,7 +118,7 @@ def sqlserver(msquery):
     
 
 
-x = input('command input  ')
-print('you entered - ',x)
-h = sqlserver(x)
-print(h)
+# x = input('command input  ')
+# print('you entered - ',x)
+# h = sqlserver(x)
+# print(h)
