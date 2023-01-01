@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "scup"
-version = "0.4.2"
+version = "0.4.3"
 description = "SCUP as in SQL Covertor Utility Program"
-authors = ["ankit K <ankit48365@gmail.com>"]
+authors = ["Ankit K <ankit48365@gmail.com>","Akansha K <akanshakaushik0995@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
