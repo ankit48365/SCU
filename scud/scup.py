@@ -1,5 +1,5 @@
 
-__version__ = '0.4.2'
+__version__ = '0.4.4'
 
 # Important MS SQL Server Queries
 def sqlserver(msquery):
@@ -82,6 +82,17 @@ def sqlserver(msquery):
         SchemaName1 = input("Provide Schema name : ")
         ssquery = ("select * from information_schema.tables where table_type='view' and TABLE_SCHEMA = '"+SchemaName1+"';")
 # 9
+    elif msquery == 'INDEX FRAGMENTATION':
+        print("Please notice the prompt looking for input")
+        SchemaName1 = input("Provide Schema name : ")
+        PCTG = input("Percentage threshold - greator then this : ")
+        ssquery = ("DECLARE @SCHEMA VARCHAR (30); SET @SCHEMA = '"+SchemaName1+"' ; DECLARE @PRCNTG INT; SET @PRCNTG = '"+PCTG+"' ;  WITH myquery09 (Schma,Tble,Indx,avg_fragmentation_in_percent,page_count) AS (select 'Schema','Table','Index','avg_fragmentation_in_percent','page_count' from sys.indexes union SELECT S.name as 'Schema', T.name as 'Table', I.name as 'Index', CONVERT(varchar(20),DDIPS.avg_fragmentation_in_percent) AS 'avg_fragmentation_in_percent', CONVERT(varchar(10),DDIPS.page_count) AS 'page_count' FROM sys.dm_db_index_physical_stats (DB_ID(), NULL, NULL, NULL, NULL) AS DDIPS INNER JOIN sys.tables T on T.object_id = DDIPS.object_id INNER JOIN sys.schemas S on T.schema_id = S.schema_id INNER JOIN sys.indexes I ON I.object_id = DDIPS.object_id AND DDIPS.index_id = I.index_id WHERE DDIPS.database_id = DB_ID() and I.name is not null and S.name = @SCHEMA AND DDIPS.avg_fragmentation_in_percent > 5) select * from myquery09 ORDER BY 4 DESC")
+
+    elif msquery == '9':
+        print("Please notice the prompt looking for input")
+        SchemaName1 = input("Provide Schema name : ")
+        PCTG = input("Percentage threshold - greator then this : ")
+        ssquery = ("DECLARE @SCHEMA VARCHAR (30); SET @SCHEMA = '"+SchemaName1+"' ; DECLARE @PRCNTG INT; SET @PRCNTG = '"+PCTG+"' ;  WITH myquery09 (Schma,Tble,Indx,avg_fragmentation_in_percent,page_count) AS (select 'Schema','Table','Index','avg_fragmentation_in_percent','page_count' from sys.indexes union SELECT S.name as 'Schema', T.name as 'Table', I.name as 'Index', CONVERT(varchar(20),DDIPS.avg_fragmentation_in_percent) AS 'avg_fragmentation_in_percent', CONVERT(varchar(10),DDIPS.page_count) AS 'page_count' FROM sys.dm_db_index_physical_stats (DB_ID(), NULL, NULL, NULL, NULL) AS DDIPS INNER JOIN sys.tables T on T.object_id = DDIPS.object_id INNER JOIN sys.schemas S on T.schema_id = S.schema_id INNER JOIN sys.indexes I ON I.object_id = DDIPS.object_id AND DDIPS.index_id = I.index_id WHERE DDIPS.database_id = DB_ID() and I.name is not null and S.name = @SCHEMA AND DDIPS.avg_fragmentation_in_percent > 5) select * from myquery09 ORDER BY 4 DESC")
 
 # 10
 
@@ -106,6 +117,7 @@ def sqlserver(msquery):
         3. SHOW TABLES FROM database_name       4. SHOW CHECK_CONSTRAINTS FROM TABLE
         5. DESCRIBE TABLE                       6. SHOW INDEX FROM TABLE
         7. DATABASE STATUS                      8. SHOW VIEWS
+        9. INDEX FRAGMENTATION
         """)
         # print(list1)
 # b   

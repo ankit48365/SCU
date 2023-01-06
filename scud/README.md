@@ -9,7 +9,7 @@ with this idea i have created this utility to provide syntax to some imp queries
 
 run [print(scup.sqlserver('list'))] to see a complete list queries, this utility support.
 
-
+version = "0.4.4" -->  Added Query 9, and added header to all queries
 
 version = "0.4.3" --> Added header to #3 and #6 query , # more details 
 
