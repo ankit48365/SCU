@@ -1,23 +1,23 @@
 
-__version__ = '0.4.4'
+__version__ = '0.4.5'
 
 # Important MS SQL Server Queries
 def sqlserver(msquery):
 
 # 1
     if msquery == 'SHOW DATABASES':
-        ssquery ='SELECT name FROM sys.databases;'
+        ssquery ="WITH myquery02 (name) AS (select 'name' from sys.indexes union SELECT name FROM sys.databases) select * from myquery02 order by (CASE WHEN name= 'name' Then 0 else 1 end), name"
     elif msquery == '1':
-        ssquery ='SELECT name FROM sys.databases;'
+        ssquery ="WITH myquery02 (name) AS (select 'name' from sys.indexes union SELECT name FROM sys.databases) select * from myquery02 order by (CASE WHEN name= 'name' Then 0 else 1 end), name"
 # 2
     elif msquery == 'SHOW TABLES':
         print("Please notice the prompt looking for input")
         SchemaName = input("Provide Schema name : ")
-        ssquery = ("SELECT table_schema, table_name, table_type FROM information_schema.tables where table_schema = '"+SchemaName+"';")
+        ssquery = ("DECLARE @table_schema varchar (30); SET @table_schema = 'dbo' ; WITH query03 (table_schema, table_name, table_type) as (select 'table_schema', 'table_name', 'table_type' from sys.indexes union SELECT table_schema, table_name, table_type FROM information_schema.tables where table_schema = @table_schema ) select * from query03 order by 2 DESC ")
     elif msquery == '2':
         print("Please notice the prompt looking for input")
         SchemaName = input("Provide Schema name : ")
-        ssquery = ("SELECT table_schema, table_name, table_type FROM information_schema.tables where table_schema = '"+SchemaName+"';")
+        ssquery = ("DECLARE @table_schema varchar (30); SET @table_schema = 'dbo' ; WITH query03 (table_schema, table_name, table_type) as (select 'table_schema', 'table_name', 'table_type' from sys.indexes union SELECT table_schema, table_name, table_type FROM information_schema.tables where table_schema = @table_schema ) select * from query03 order by 2 DESC ")
 
 # 3 
     elif msquery == 'SHOW TABLES FROM DATABASE_NAME':
